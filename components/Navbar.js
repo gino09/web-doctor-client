@@ -1,8 +1,7 @@
 import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Cart from '../public/svg/cart.svg'
-import Person from '../public/svg/person.svg'
+import Contact from '../public/svg/contact.svg'
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -11,7 +10,7 @@ const NavBar = ({classes}) => (
         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
         </IconButton>
-        <Typography variant="h6" className={classes.title}>
+        <Typography variant="h3" style={{ color: "#575757" }} className={classes.title}>
             WebDoctor
           </Typography>
         <IconButton
@@ -20,7 +19,7 @@ const NavBar = ({classes}) => (
             aria-haspopup="true"
             color="inherit"
         >
-            <Cart />
+            <Contact />
         </IconButton>
     </Toolbar>
 )
