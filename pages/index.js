@@ -25,6 +25,7 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 function Copyright() {
   return (
@@ -42,10 +43,9 @@ function Copyright() {
 
 const useStyles = makeStyles({
   index: {
-    maxWidth: 1024,
-    margin: "auto",
-    paddingLeft:20,
-    paddingRight:20
+    width:"100vw",
+    maxWidth:1024,
+    margin:"auto"
   },
   root: {
     flexGrow: 1,
@@ -62,7 +62,7 @@ const useStyles = makeStyles({
   title: {
     padding: `${theme.spacing(3)}px ${theme.spacing(2.5)}px ${theme.spacing(2)}px`,
     flexGrow: 1,
-    fontSize: 48
+    fontSize: 24
   },
   media: {
     minHeight: 400
@@ -84,6 +84,9 @@ const useStyles = makeStyles({
   },
   link: {
     margin: theme.spacing(1, 1.5),
+  },
+  hero: {
+    border: "1px #575757 solid"
   },
   heroContent: {
     padding: theme.spacing(8, 0, 6),
@@ -152,25 +155,28 @@ export default function Home() {
   return (
     <div className={classes.index}>
       <div className={classes.root}>
-
+        <CssBaseline />
         {matches ? <BigNavbar classes={classes} /> : <NavBar classes={classes} />}
       </div>
-      <Grid container >
-        <Grid xs={12} sm={6} item style={{ backgroundColor:"#F7F2E7",padding:40}}>
-          <MachineMan />
+      <div className={classes.hero}>
+        <Grid container>
+          <Grid xs={12} sm={6} item style={{ backgroundColor: "#F7F2E7", padding: 40 }}>
+            <MachineMan />
+          </Grid>
+          <Grid xs={12} sm={6} item style={{ padding: 40 }}>
+            <HeroText />
+          </Grid>
         </Grid>
-        <Grid xs={12} sm={6} item style={{padding:40}}>
-          <HeroText />
+        <Grid container>
+          <Grid xs={12} sm={6} item style={{ padding: 40 }}>
+            <MobileDesign />
+          </Grid>
+          <Grid xs={12} sm={6} item style={{ backgroundColor: "#D9E4DD", padding: 40 }}>
+            <SEOPerf />
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid container>
-        <Grid xs={12} sm={6} item style={{ padding: 40 }}>
-          <MobileDesign />
-        </Grid>
-        <Grid xs={12} sm={6} item style={{ backgroundColor: "#D9E4DD", padding: 40}}>
-          <SEOPerf />
-        </Grid>
-      </Grid>
+      </div>
+
       <Container maxWidth="sm" component="main" className={classes.heroContent}>
         <Typography component="h1" variant="h2" align="center" gutterBottom>
           Pricing
@@ -222,7 +228,8 @@ export default function Home() {
           ))}
         </Grid>
       </Container>
-      <form method="post" style={{marginTop:50}}>
+      <h2>Contact</h2>
+      <form method="post" style={{ marginTop: 50 }}>
         <Grid container spacing={2}>
           <Grid xs={12} item>
             <TextField type="text" name="name" label="Name" fullWidth variant="outlined" />
@@ -252,23 +259,9 @@ export default function Home() {
           </Grid >
         </Grid>
       </form>
-      {/* <Card className={classes.card}>
-      <Typography variant="h6" className={classes.title}>
-        Home Page
-          </Typography>
-      <CardMedia className={classes.media} title="Unicorn Bicycle" >
-        <img src="unicornbike.jpg" height="500"/>
-      </CardMedia>
-      <Typography variant="body2" component="p" className={classes.credit} color="textSecondary">Photo by <a href="https://unsplash.com/@boudewijn_huysmans" target="_blank" rel="noopener noreferrer">Boudewijn Huysmans</a> on Unsplash</Typography>
-      <CardContent>
-        <Typography variant="body1" component="p">
-          Welcome to the MERN Skeleton home page.
-            </Typography>
-      </CardContent>
-    </Card> */}
-    <Box mt={5}>
+      <Box mt={5}>
         <Copyright />
-    </Box>
+      </Box>
     </div>
   )
 }

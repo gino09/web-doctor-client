@@ -8,15 +8,14 @@ import Logo from '../public/svg/logo.svg';
 import Contact from '../public/svg/contact.svg';
 
 const NavBar = ({ classes }) => (
-    <Toolbar style={{ display: "fixed" }}>
+    <Toolbar style={{ display: "fixed",width:"100vw",maxWidth:1024,margin:"auto"}}>
         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <Logo />
         </IconButton >
-        <Typography className={classes.title} variant="h5" style={{ color:"#575757"}}>
+        <Typography className={classes.title} style={{ color:"#575757"}}>
             WebDoctor
           </Typography>
         <IconButton
-            edge="end"
             aria-label="account of current user"
             aria-haspopup="true"
             color="inherit"
@@ -24,7 +23,6 @@ const NavBar = ({ classes }) => (
             <Contact />
         </IconButton>
         <IconButton
-            edge="end"
             aria-label="account of current user"
             aria-haspopup="true"
             color="inherit"
