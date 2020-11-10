@@ -12,8 +12,8 @@ const NavBar = ({ classes }) => (
         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <Logo />
         </IconButton >
-        <Typography className={classes.title} style={{ color:"#575757"}}>
-            WebDoctor
+        <Typography style={{ color:"#575757",flexGrow:1}}>
+            webDoctor
           </Typography>
         <IconButton
             aria-label="account of current user"

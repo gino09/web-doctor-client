@@ -2,8 +2,17 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
+import CloseIcon from '@material-ui/icons/Close';
 
 import theme from '../styles/theme'
 import NavBar from '../components/Navbar'
@@ -43,7 +52,6 @@ function Copyright() {
 
 const useStyles = makeStyles({
   index: {
-    width:"100vw",
     maxWidth:1024,
     margin:"auto"
   },
@@ -86,7 +94,8 @@ const useStyles = makeStyles({
     margin: theme.spacing(1, 1.5),
   },
   hero: {
-    border: "1px #575757 solid"
+    border: "1px #575757 solid",
+    margin:"auto"
   },
   heroContent: {
     padding: theme.spacing(8, 0, 6),
@@ -152,18 +161,58 @@ export default function Home() {
   const classes = useStyles()
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
+  const [top, setTop] = React.useState(false);
+
+  const toggleDrawer = () => {
+    setTop(!top)
+  }
+
+  const list = () => (
+    <div
+      role="presentation"
+    >
+      <ListItem onClick={toggleDrawer} onKeyDown={toggleDrawer}>
+        <ListItemIcon>
+          <CloseIcon />
+        </ListItemIcon>
+      </ListItem>
+      <Divider />
+      <List>
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+    </div>
+  );
+
   return (
     <div className={classes.index}>
       <div className={classes.root}>
         <CssBaseline />
-        {matches ? <BigNavbar classes={classes} /> : <NavBar classes={classes} />}
+        {matches ? <BigNavbar classes={classes} /> : <NavBar classes={classes} setTop={setTop}/>}
       </div>
+      <Drawer anchor="top" open={top} onClose={toggleDrawer}>
+        {list()}
+      </Drawer>
       <div className={classes.hero}>
         <Grid container>
-          <Grid xs={12} sm={6} item style={{ backgroundColor: "#F7F2E7", padding: 40 }}>
+          <Grid xs={12} sm={6} item style={{ backgroundColor: "#F7F2E7", padding: 60 }}>
             <MachineMan />
           </Grid>
-          <Grid xs={12} sm={6} item style={{ padding: 40 }}>
+          <Grid  xs={12} sm={6} item style={{ padding: 40 }}>
             <HeroText />
           </Grid>
         </Grid>
@@ -186,11 +235,9 @@ export default function Home() {
           It&apos;s built with default Material-UI components with little customization.
         </Typography>
       </Container>
-      {/* End hero unit */}
       <Container maxWidth="md" component="main">
         <Grid container spacing={5} alignItems="flex-end">
           {tiers.map((tier) => (
-            // Enterprise card is full width at sm breakpoint
             <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
               <Card>
                 <CardHeader
