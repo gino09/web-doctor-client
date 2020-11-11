@@ -50,7 +50,7 @@ function Copyright() {
 }
 
 
-const useStyles = makeStyles((theme)=>({
+const useStyles = makeStyles({
   index: {
     maxWidth: 1024,
     margin: "auto"
@@ -102,7 +102,7 @@ const useStyles = makeStyles((theme)=>({
   },
   cardHeader: {
     backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[700],
+      theme.palette.primary.main
   },
   cardPricing: {
     display: 'flex',
@@ -120,7 +120,7 @@ const useStyles = makeStyles((theme)=>({
       paddingBottom: theme.spacing(6),
     },
   },
-}))
+})
 
 const tiers = [
   {
@@ -159,8 +159,8 @@ const tiers = [
 
 export default function Home() {
   const classes = useStyles()
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+  const thema = useTheme();
+  const matches = useMediaQuery(thema.breakpoints.up('sm'));
 
   const [top, setTop] = React.useState(false);
 
@@ -197,7 +197,6 @@ export default function Home() {
       </List>
     </div>
   );
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -254,20 +253,20 @@ export default function Home() {
                       <Typography component="h2" variant="h3"> 
                         ${tier.price}
                       </Typography>
-                      <Typography variant="h6" >
+                      <Typography variant="h6" align="center">
                         /mo
                     </Typography>
                     </div>
                     <ul>
                       {tier.description.map((line) => (
-                        <Typography  component="li" variant="subtitle1" align="center" key={line}>
+                        <Typography  component="li" variant="subtitle1" align="center" key={line} > 
                           {line}
                         </Typography>
                       ))}
                     </ul>
                   </CardContent>
                   <CardActions>
-                    <Button fullWidth variant={tier.buttonVariant} >
+                    <Button fullWidth variant={tier.buttonVariant} color="secondary">
                       {tier.buttonText}
                     </Button>
                   </CardActions>
@@ -276,8 +275,8 @@ export default function Home() {
             ))}
           </Grid>
         </Container>
-        <h2>Contact</h2>
-        <form method="post" style={{ marginTop: 50 }}>
+        <h2 style={{ padding: 10}}>Contact</h2>
+        <form method="post" style={{ marginTop: 50,padding:10,margin:10 }}>
           <Grid container>
             <Grid xs={12} item>
               <TextField type="text" name="name" label="Name" fullWidth variant="outlined" />
@@ -293,11 +292,11 @@ export default function Home() {
               <TextField name="message" type="text" label="Message" fullWidth variant="outlined" multiline rows={4} />
             </Grid>
             <Grid xs={12} item>
-              <Button type="submit" fullWidth variant="outlined" >Send</Button>
+              <Button type="submit" fullWidth variant="outlined" style={{ backgroundColor: "#d9e4dd", color: "#575757" }}>Send</Button>
 
             </Grid>
-            <Grid xs={12} item>
-              <Button type="reset" fullWidth variant="outlined" >Clear</Button>
+            <Grid xs={12} item >
+              <Button type="reset" fullWidth variant="outlined" style={{ backgroundColor: "#f7f2e7", color:"#575757"}}>Clear</Button>
 
             </Grid>
             <Grid item>

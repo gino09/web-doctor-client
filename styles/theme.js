@@ -1,5 +1,12 @@
 import { createMuiTheme } from '@material-ui/core/styles'
 
+const redHatText = {
+    fontFamily: 'Red Hat Text',
+    fontStyle: 'normal',
+    fontDisplay: 'swap',
+    fontWeight: 400
+}
+
 const theme = createMuiTheme({
     typography: {
         useNextVariants: true,
@@ -20,7 +27,17 @@ const theme = createMuiTheme({
         openTitle: '#3f4771',
         protectedTitle: '#d9e4dd',
         type: 'light'
-    }
+    },
+    typography: {
+        fontFamily: 'Red Hat Text, Arial',
+    },
+    overrides: {
+        MuiCssBaseline: {
+            '@global': {
+                '@font-face': [redHatText],
+            },
+        },
+    },
 })
 
 export default theme

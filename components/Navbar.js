@@ -10,7 +10,7 @@ const NavBar = ({classes,setTop}) => (
         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={()=>setTop(true)}>
             <MenuIcon/>
         </IconButton>
-        <Typography style={{ color: "#575757",flexFlow:1 }}>
+        <Typography variant="h6">
           webDoctor
           </Typography>
         <IconButton
