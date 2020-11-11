@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -38,9 +38,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://ginogarcia.dev">
+      <Link  href="https://ginogarcia.dev">
         WebDoctor
       </Link>{' '}
       {new Date().getFullYear()}
@@ -50,10 +50,9 @@ function Copyright() {
 }
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
   index: {
-    maxWidth:1024,
-    margin:"auto"
+    maxWidth: 1024
   },
   root: {
     flexGrow: 1,
@@ -95,7 +94,7 @@ const useStyles = makeStyles({
   },
   hero: {
     border: "1px #575757 solid",
-    margin:"auto"
+    margin: "auto"
   },
   heroContent: {
     padding: theme.spacing(8, 0, 6),
@@ -120,7 +119,7 @@ const useStyles = makeStyles({
       paddingBottom: theme.spacing(6),
     },
   },
-})
+}))
 
 const tiers = [
   {
@@ -199,116 +198,118 @@ export default function Home() {
   );
 
   return (
-    <div className={classes.index}>
-      <div className={classes.root}>
-        <CssBaseline />
-        {matches ? <BigNavbar classes={classes} /> : <NavBar classes={classes} setTop={setTop}/>}
-      </div>
-      <Drawer anchor="top" open={top} onClose={toggleDrawer}>
-        {list()}
-      </Drawer>
-      <div className={classes.hero}>
-        <Grid container>
-          <Grid xs={12} sm={6} item style={{ backgroundColor: "#F7F2E7", padding: 60 }}>
-            <MachineMan />
-          </Grid>
-          <Grid  xs={12} sm={6} item style={{ padding: 40 }}>
-            <HeroText />
-          </Grid>
-        </Grid>
-        <Grid container>
-          <Grid xs={12} sm={6} item style={{ padding: 40 }}>
-            <MobileDesign />
-          </Grid>
-          <Grid xs={12} sm={6} item style={{ backgroundColor: "#D9E4DD", padding: 40 }}>
-            <SEOPerf />
-          </Grid>
-        </Grid>
-      </div>
-
-      <Container maxWidth="sm" component="main" className={classes.heroContent}>
-        <Typography component="h1" variant="h2" align="center" gutterBottom>
-          Pricing
-        </Typography>
-        <Typography variant="h5" align="center" color="textSecondary" component="p">
-          Quickly build an effective pricing table for your potential customers with this layout.
-          It&apos;s built with default Material-UI components with little customization.
-        </Typography>
-      </Container>
-      <Container maxWidth="md" component="main">
-        <Grid container spacing={5} alignItems="flex-end">
-          {tiers.map((tier) => (
-            <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
-              <Card>
-                <CardHeader
-                  title={tier.title}
-                  subheader={tier.subheader}
-                  titleTypographyProps={{ align: 'center' }}
-                  subheaderTypographyProps={{ align: 'center' }}
-                  action={tier.title === 'Pro' ? <StarIcon /> : null}
-                  className={classes.cardHeader}
-                />
-                <CardContent>
-                  <div className={classes.cardPricing}>
-                    <Typography component="h2" variant="h3" color="textSecondary">
-                      ${tier.price}
-                    </Typography>
-                    <Typography variant="h6" color="textSecondary">
-                      /mo
-                    </Typography>
-                  </div>
-                  <ul>
-                    {tier.description.map((line) => (
-                      <Typography color="textSecondary" component="li" variant="subtitle1" align="center" key={line}>
-                        {line}
-                      </Typography>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant} color="textSecondary">
-                    {tier.buttonText}
-                  </Button>
-                </CardActions>
-              </Card>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div className={classes.index}>
+        <div className={classes.root}>
+          {matches ? <BigNavbar classes={classes} /> : <NavBar classes={classes} setTop={setTop} />}
+        </div>
+        <Drawer anchor="top" open={top} onClose={toggleDrawer}>
+          {list()}
+        </Drawer>
+        <div className={classes.hero}>
+          <Grid container>
+            <Grid xs={12} sm={6} item style={{ backgroundColor: "#F7F2E7", padding: 60 }}>
+              <MachineMan />
             </Grid>
-          ))}
-        </Grid>
-      </Container>
-      <h2>Contact</h2>
-      <form method="post" style={{ marginTop: 50 }}>
-        <Grid container spacing={2}>
-          <Grid xs={12} item>
-            <TextField type="text" name="name" label="Name" fullWidth variant="outlined" />
+            <Grid xs={12} sm={6} item style={{ padding: 40 }}>
+              <HeroText />
+            </Grid>
           </Grid>
-          <Grid xs={12} item>
-            <TextField name="email" type="email" label="Email" fullWidth variant="outlined" />
+          <Grid container>
+            <Grid xs={12} sm={6} item style={{ padding: 40 }}>
+              <MobileDesign />
+            </Grid>
+            <Grid xs={12} sm={6} item style={{ backgroundColor: "#D9E4DD", padding: 40 }}>
+              <SEOPerf />
+            </Grid>
+          </Grid>
+        </div>
 
+        <Container maxWidth="sm" component="main" className={classes.heroContent}>
+          <Typography component="h1" variant="h2" align="center" gutterBottom>
+            Pricing
+        </Typography>
+          <Typography variant="h5" align="center"  component="p">
+            Quickly build an effective pricing table for your potential customers with this layout.
+            It&apos;s built with default Material-UI components with little customization.
+        </Typography>
+        </Container>
+        <Container maxWidth="md" component="main">
+          <Grid container spacing={5} alignItems="flex-end">
+            {tiers.map((tier) => (
+              <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
+                <Card>
+                  <CardHeader
+                    title={tier.title}
+                    subheader={tier.subheader}
+                    titleTypographyProps={{ align: 'center' }}
+                    subheaderTypographyProps={{ align: 'center' }}
+                    action={tier.title === 'Pro' ? <StarIcon /> : null}
+                    className={classes.cardHeader}
+                  />
+                  <CardContent>
+                    <div className={classes.cardPricing}>
+                      <Typography component="h2" variant="h3"> 
+                        ${tier.price}
+                      </Typography>
+                      <Typography variant="h6" >
+                        /mo
+                    </Typography>
+                    </div>
+                    <ul>
+                      {tier.description.map((line) => (
+                        <Typography  component="li" variant="subtitle1" align="center" key={line}>
+                          {line}
+                        </Typography>
+                      ))}
+                    </ul>
+                  </CardContent>
+                  <CardActions>
+                    <Button fullWidth variant={tier.buttonVariant} >
+                      {tier.buttonText}
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
           </Grid>
-          <Grid xs={12} item>
-            <TextField name="subject" type="text" label="Subject" fullWidth variant="outlined" />
-          </Grid>
-          <Grid xs={12} item>
-            <TextField name="message" type="text" label="Message" fullWidth variant="outlined" multiline rows={4} />
-          </Grid>
-          <Grid xs={12} item>
-            <Button type="submit" fullWidth variant="outlined" color="textSecondary">Send</Button>
+        </Container>
+        <h2>Contact</h2>
+        <form method="post" style={{ marginTop: 50 }}>
+          <Grid container spacing={2}>
+            <Grid xs={12} item>
+              <TextField type="text" name="name" label="Name" fullWidth variant="outlined" />
+            </Grid>
+            <Grid xs={12} item>
+              <TextField name="email" type="email" label="Email" fullWidth variant="outlined" />
 
-          </Grid>
-          <Grid xs={12} item>
-            <Button type="reset" fullWidth variant="outlined" color="textSecondary">Clear</Button>
+            </Grid>
+            <Grid xs={12} item>
+              <TextField name="subject" type="text" label="Subject" fullWidth variant="outlined" />
+            </Grid>
+            <Grid xs={12} item>
+              <TextField name="message" type="text" label="Message" fullWidth variant="outlined" multiline rows={4} />
+            </Grid>
+            <Grid xs={12} item>
+              <Button type="submit" fullWidth variant="outlined" >Send</Button>
 
+            </Grid>
+            <Grid xs={12} item>
+              <Button type="reset" fullWidth variant="outlined" >Clear</Button>
+
+            </Grid>
+            <Grid item>
+              <h6>Chicago, US</h6>
+              <h6>Phone: +00 151515</h6>
+              <h6>Email: mail@mail.com</h6>
+            </Grid >
           </Grid>
-          <Grid item>
-            <h6>Chicago, US</h6>
-            <h6>Phone: +00 151515</h6>
-            <h6>Email: mail@mail.com</h6>
-          </Grid >
-        </Grid>
-      </form>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </div>
+        </form>
+        <Box mt={5}>
+          <Copyright />
+        </Box>
+      </div>
+    </ThemeProvider>
   )
 }
