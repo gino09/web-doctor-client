@@ -211,7 +211,7 @@ export default function Home() {
         <div className={classes.hero}>
           <Grid container>
             <Grid xs={12} sm={6} item style={{ backgroundColor: "#F7F2E7", padding: 60 }}>
-              <MachineMan />
+              <MachineMan/>
             </Grid>
             <Grid xs={12} sm={6} item style={{ padding: 40 }}>
               <HeroText />
@@ -237,10 +237,10 @@ export default function Home() {
         </Typography>
         </Container>
         <Container maxWidth="md" component="main">
-          <Grid container spacing={5} alignItems="flex-end">
+          <Grid container alignItems="flex-end">
             {tiers.map((tier) => (
-              <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
-                <Card>
+              <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4} >
+                <Card style={{margin:10}}>
                   <CardHeader
                     title={tier.title}
                     subheader={tier.subheader}
@@ -278,7 +278,7 @@ export default function Home() {
         </Container>
         <h2>Contact</h2>
         <form method="post" style={{ marginTop: 50 }}>
-          <Grid container spacing={2}>
+          <Grid container>
             <Grid xs={12} item>
               <TextField type="text" name="name" label="Name" fullWidth variant="outlined" />
             </Grid>
