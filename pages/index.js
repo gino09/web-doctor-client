@@ -52,7 +52,8 @@ function Copyright() {
 
 const useStyles = makeStyles((theme)=>({
   index: {
-    maxWidth: 1024
+    maxWidth: 1024,
+    margin: "auto"
   },
   root: {
     flexGrow: 1,
