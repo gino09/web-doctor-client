@@ -1,9 +1,9 @@
-import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Contact from '../public/svg/contact.svg'
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import appText from '../components/appText'
 
 const NavBar = ({classes,setTop}) => (
     <Toolbar>
@@ -11,7 +11,7 @@ const NavBar = ({classes,setTop}) => (
             <MenuIcon/>
         </IconButton>
         <Typography variant="h6">
-          webDoctor
+          {appText.en.title}
           </Typography>
         <IconButton
             edge="end"

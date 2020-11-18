@@ -3,7 +3,6 @@ import { makeStyles, ThemeProvider } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -13,6 +12,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import CloseIcon from '@material-ui/icons/Close';
+import FormControl from '@material-ui/core/FormControl';
 
 import theme from '../styles/theme'
 import NavBar from '../components/Navbar'
@@ -35,12 +35,13 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import appText from '../components/appText'
 
 function Copyright() {
   return (
     <Typography variant="body2" align="center">
       {'Copyright © '}
-      <Link  href="https://ginogarcia.dev">
+      <Link href="https://ginogarcia.dev">
         WebDoctor
       </Link>{' '}
       {new Date().getFullYear()}
@@ -119,43 +120,11 @@ const useStyles = makeStyles({
       paddingTop: theme.spacing(6),
       paddingBottom: theme.spacing(6),
     },
+    fullHeightCard: {
+      height: "100%",
+    },
   },
 })
-
-const tiers = [
-  {
-    title: 'Free',
-    price: '0',
-    description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
-    buttonText: 'Get started',
-    buttonVariant: 'contained',
-  },
-  {
-    title: 'Pro',
-    subheader: 'Most popular',
-    price: '15',
-    description: [
-      '20 users included',
-      '10 GB of storage',
-      'Help center access',
-      'Priority email support',
-    ],
-    buttonText: 'Get started',
-    buttonVariant: 'contained',
-  },
-  {
-    title: 'Enterprise',
-    price: '30',
-    description: [
-      '50 users included',
-      '30 GB of storage',
-      'Help center access',
-      'Phone & email support',
-    ],
-    buttonText: 'Get started',
-    buttonVariant: 'contained',
-  },
-];
 
 export default function Home() {
   const classes = useStyles()
@@ -197,6 +166,7 @@ export default function Home() {
       </List>
     </div>
   );
+  const tiers = appText.en.tiers
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -210,7 +180,7 @@ export default function Home() {
         <div className={classes.hero}>
           <Grid container>
             <Grid xs={12} sm={6} item style={{ backgroundColor: "#F7F2E7", padding: 60 }}>
-              <MachineMan/>
+              <MachineMan />
             </Grid>
             <Grid xs={12} sm={6} item style={{ padding: 40 }}>
               <HeroText />
@@ -230,16 +200,19 @@ export default function Home() {
           <Typography component="h1" variant="h2" align="center" gutterBottom>
             Pricing
         </Typography>
-          <Typography variant="h5" align="center"  component="p">
-            Quickly build an effective pricing table for your potential customers with this layout.
-            It&apos;s built with default Material-UI components with little customization.
-        </Typography>
+          <Typography variant="h5" align="center" component="p">
+            {appText.en.pricing.subTitle}
+          </Typography>
         </Container>
         <Container maxWidth="md" component="main">
-          <Grid container alignItems="flex-end">
+          <Grid container>
             {tiers.map((tier) => (
-              <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4} >
-                <Card style={{margin:10}}>
+              <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4} component={Card} style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}>
+                <div>
                   <CardHeader
                     title={tier.title}
                     subheader={tier.subheader}
@@ -248,9 +221,9 @@ export default function Home() {
                     action={tier.title === 'Pro' ? <StarIcon /> : null}
                     className={classes.cardHeader}
                   />
-                  <CardContent>
+                  <CardContent >
                     <div className={classes.cardPricing}>
-                      <Typography component="h2" variant="h3"> 
+                      <Typography component="h2" variant="h3">
                         ${tier.price}
                       </Typography>
                       <Typography variant="h6" align="center">
@@ -259,53 +232,44 @@ export default function Home() {
                     </div>
                     <ul>
                       {tier.description.map((line) => (
-                        <Typography  component="li" variant="subtitle1" align="center" key={line} > 
+                        <Typography component="li" variant="subtitle1" align="left" key={line} >
                           {line}
                         </Typography>
                       ))}
                     </ul>
                   </CardContent>
-                  <CardActions>
-                    <Button fullWidth variant={tier.buttonVariant} color="secondary">
-                      {tier.buttonText}
-                    </Button>
-                  </CardActions>
-                </Card>
+                </div>
+                <CardActions>
+                  <Button fullWidth variant={tier.buttonVariant} color="secondary">
+                    {tier.buttonText}
+                  </Button>
+                </CardActions>
               </Grid>
             ))}
           </Grid>
         </Container>
-        <h2 style={{ padding: 10}}>Contact</h2>
-        <form method="post" style={{ marginTop: 50,padding:10,margin:10 }}>
-          <Grid container>
-            <Grid xs={12} item>
-              <TextField type="text" name="name" label="Name" fullWidth variant="outlined" />
-            </Grid>
-            <Grid xs={12} item>
+        <h2 style={{ padding: 10 }}>Contact</h2>
+      
+          <TextField type="text" name="name" label="Name" fullWidth variant="outlined" color="secondary"/>
+            
               <TextField name="email" type="email" label="Email" fullWidth variant="outlined" />
 
-            </Grid>
-            <Grid xs={12} item>
+            
               <TextField name="subject" type="text" label="Subject" fullWidth variant="outlined" />
-            </Grid>
-            <Grid xs={12} item>
+            
               <TextField name="message" type="text" label="Message" fullWidth variant="outlined" multiline rows={4} />
-            </Grid>
-            <Grid xs={12} item>
+            
+            
               <Button type="submit" fullWidth variant="outlined" style={{ backgroundColor: "#d9e4dd", color: "#575757" }}>Send</Button>
 
-            </Grid>
-            <Grid xs={12} item >
-              <Button type="reset" fullWidth variant="outlined" style={{ backgroundColor: "#f7f2e7", color:"#575757"}}>Clear</Button>
+            
+              <Button type="reset" fullWidth variant="outlined" style={{ backgroundColor: "#f7f2e7", color: "#575757" }}>Clear</Button>
 
-            </Grid>
-            <Grid item>
-              <h6>Chicago, US</h6>
-              <h6>Phone: +00 151515</h6>
-              <h6>Email: mail@mail.com</h6>
-            </Grid >
-          </Grid>
-        </form>
+           
+              <h6>{appText.en.contact.place}</h6>
+              <h6>{appText.en.contact.phone}</h6>
+              <h6>{appText.en.contact.email}</h6>
+    
         <Box mt={5}>
           <Copyright />
         </Box>
