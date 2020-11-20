@@ -1,279 +1,193 @@
-import React from 'react'
-import { makeStyles, ThemeProvider } from '@material-ui/core/styles'
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Grid from '@material-ui/core/Grid';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import CloseIcon from '@material-ui/icons/Close';
-import FormControl from '@material-ui/core/FormControl';
-
-import theme from '../styles/theme'
-import NavBar from '../components/Navbar'
-import BigNavbar from '../components/BigNavbar'
-import Button from '@material-ui/core/Button';
-
-import MachineMan from '../public/svg/machineman.svg'
-import HeroText from '../public/svg/herotext.svg'
-import MobileDesign from '../public/svg/mobiledesign.svg'
-import SEOPerf from '../public/svg/seoperf.svg'
-
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import StarIcon from '@material-ui/icons/StarBorder';
-import Link from '@material-ui/core/Link';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import Logo from '../public/svg/logo.svg'
+import Cart from '../public/svg/cart.svg'
+import Contact from '../public/svg/contact.svg'
+import Person from '../public/svg/person.svg'
+import JamStack from '../public/svg/jamstack.svg'
+import Responsive from '../public/svg/responsive.svg'
+import SearchEngine from '../public/svg/searchengine.svg'
+import Gears from '../public/svg/gears.svg'
+import Link from 'next/link'
 import appText from '../components/appText'
 
 function Copyright() {
-  return (
-    <Typography variant="body2" align="center">
-      {'Copyright © '}
-      <Link href="https://ginogarcia.dev">
-        WebDoctor
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
+    return (
+        <p style={{display:"flex",justifyContent:"center"}}>
+            {'Copyright © '}
+            <Link href="https://ginogarcia.dev">
+                
+                    WebDoctor
+       
+            </Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+        </p>
+    );
 }
 
-
-const useStyles = makeStyles({
-  index: {
-    maxWidth: 1024,
-    margin: "auto"
-  },
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  card: {
-    maxWidth: 600,
-    margin: 'auto',
-    marginTop: theme.spacing(5),
-    marginBottom: theme.spacing(5)
-  },
-  title: {
-    padding: `${theme.spacing(3)}px ${theme.spacing(2.5)}px ${theme.spacing(2)}px`,
-    flexGrow: 1,
-    fontSize: 24
-  },
-  media: {
-    minHeight: 400
-  },
-  credit: {
-    padding: 10,
-    textAlign: 'right',
-    backgroundColor: '#ededed',
-    borderBottom: '1px solid #d0d0d0',
-    '& a': {
-      color: '#3f4771'
-    }
-  },
-  toolbar: {
-    flexWrap: 'wrap',
-  },
-  toolbarTitle: {
-    flexGrow: 1,
-  },
-  link: {
-    margin: theme.spacing(1, 1.5),
-  },
-  hero: {
-    border: "1px #575757 solid",
-    margin: "auto"
-  },
-  heroContent: {
-    padding: theme.spacing(8, 0, 6),
-  },
-  cardHeader: {
-    backgroundColor:
-      theme.palette.primary.main
-  },
-  cardPricing: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'baseline',
-    marginBottom: theme.spacing(2),
-  },
-  footer: {
-    borderTop: `1px solid ${theme.palette.divider}`,
-    marginTop: theme.spacing(8),
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(6),
-      paddingBottom: theme.spacing(6),
-    },
-    fullHeightCard: {
-      height: "100%",
-    },
-  },
-})
-
-export default function Home() {
-  const classes = useStyles()
-  const thema = useTheme();
-  const matches = useMediaQuery(thema.breakpoints.up('sm'));
-
-  const [top, setTop] = React.useState(false);
-
-  const toggleDrawer = () => {
-    setTop(!top)
-  }
-
-  const list = () => (
-    <div
-      role="presentation"
-    >
-      <ListItem onClick={toggleDrawer} onKeyDown={toggleDrawer}>
-        <ListItemIcon>
-          <CloseIcon />
-        </ListItemIcon>
-      </ListItem>
-      <Divider />
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
-  const tiers = appText.en.tiers
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <div className={classes.index}>
-        <div className={classes.root}>
-          {matches ? <BigNavbar classes={classes} /> : <NavBar classes={classes} setTop={setTop} />}
-        </div>
-        <Drawer anchor="top" open={top} onClose={toggleDrawer}>
-          {list()}
-        </Drawer>
-        <div className={classes.hero}>
-          <Grid container>
-            <Grid xs={12} sm={6} item style={{ backgroundColor: "#F7F2E7", padding: 60 }}>
-              <MachineMan />
-            </Grid>
-            <Grid xs={12} sm={6} item style={{ padding: 40 }}>
-              <HeroText />
-            </Grid>
-          </Grid>
-          <Grid container>
-            <Grid xs={12} sm={6} item style={{ padding: 40 }}>
-              <MobileDesign />
-            </Grid>
-            <Grid xs={12} sm={6} item style={{ backgroundColor: "#D9E4DD", padding: 40 }}>
-              <SEOPerf />
-            </Grid>
-          </Grid>
-        </div>
-
-        <Container maxWidth="sm" component="main" className={classes.heroContent}>
-          <Typography component="h1" variant="h2" align="center" gutterBottom>
-            Pricing
-        </Typography>
-          <Typography variant="h5" align="center" component="p">
-            {appText.en.pricing.subTitle}
-          </Typography>
-        </Container>
-        <Container maxWidth="md" component="main">
-          <Grid container>
-            {tiers.map((tier) => (
-              <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4} component={Card} style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-              }}>
-                <div>
-                  <CardHeader
-                    title={tier.title}
-                    subheader={tier.subheader}
-                    titleTypographyProps={{ align: 'center' }}
-                    subheaderTypographyProps={{ align: 'center' }}
-                    action={tier.title === 'Pro' ? <StarIcon /> : null}
-                    className={classes.cardHeader}
-                  />
-                  <CardContent >
-                    <div className={classes.cardPricing}>
-                      <Typography component="h2" variant="h3">
-                        ${tier.price}
-                      </Typography>
-                      <Typography variant="h6" align="center">
-                        /mo
-                    </Typography>
+const Index = () => (
+    <>
+        <div className="w3-top">
+            <div className="w3-bar w3-white w3-wide w3-content w3-card w3-cell-row">
+                <a href="#home" className="w3-bar-item w3-button w-cell w3-padding">
+                    <div className="w3-container w3-cell-row">
+                        <div className="w3-cell-middle">
+                            <Logo />
+                        </div>
+                        <div className="w3-cell-middle">
+                            webDoctor
+                            </div>
                     </div>
-                    <ul>
-                      {tier.description.map((line) => (
-                        <Typography component="li" variant="subtitle1" align="left" key={line} >
-                          {line}
-                        </Typography>
-                      ))}
-                    </ul>
-                  </CardContent>
+                </a>
+                <div className="w3-bar-item w3-right">
+                    <a href="#projects" className="w3-bar-item w3-button">
+                        <Cart />
+                    </a>
+                    <a href="#about" className="w3-bar-item w3-button">
+                        <Contact />
+                    </a>
+                    <a href="#contact" className="w3-bar-item w3-button">
+                        <Person />
+                    </a>
                 </div>
-                <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant} color="secondary">
-                    {tier.buttonText}
-                  </Button>
-                </CardActions>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-        <h2 style={{ padding: 10 }}>Contact</h2>
-      
-          <TextField type="text" name="name" label="Name" fullWidth variant="outlined" color="secondary"/>
-            
-              <TextField name="email" type="email" label="Email" fullWidth variant="outlined" />
+            </div>
+        </div>
+        <main className="w3-display-container w3-content w3-hide-middle w3-content w3-hide-large" style={{ marginTop: 80 }}>
+            <div className="w3-cell-row">
+                <div className="w3-container w3-tertiary w3-cell" style={{ height: 400 }}>
+                </div>
+            </div>
+            <div className="w3-cell-row">
+                <div class="w3-container w3-secondary w3-cell" style={{ height: 430 }}>
+                </div>
+            </div>
+            <div style={{ position: "absolute", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: 28, left: 0, top: 0, bottom: 0, color: "#4A4E4B" }}>
+                <div className="w3-xxlarge">
+                    Build discoverable and fast web application optimized for User Experience.
+                </div>
+                <div>
+                    <div className="w3-xlarge">Mobile First Responsive Design</div>
+                    <Responsive/>
+                </div>
+                <div className="w3-xlarge">
+Seach Engine Optimization 
+& High Performance
+                </div>
+                <div style={{display:"flex",alignItems:"center"}}>
+                    <div>
+                        <SearchEngine style={{width:"50%"}}/>
+                    </div>
+                    <div>
+                        <Gears style={{ width: "50%" }}/>
+                    </div>
+                </div>
+                <button className="w3-button w3-round-large w3-xxlarge w3-primary-button ">Get Request</button>
+                {/* <JamStack/> */}
+               
+            </div>
+        </main>
+        <main className="w3-display-container w3-content w3-hide-small" style={{ marginTop: 80 }}>
+            <div className="w3-cell-row">
+                <div className="w3-container w3-tertiary w3-cell" style={{ height: 400 }}>
+                </div>
+                <div class="w3-container w3-secondary w3-cell" style={{ height: 400 }}>
+                </div>
+            </div>
+            <div style={{ position: "absolute", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: 48, left: 0, top: 0, bottom: 0, color: "#4A4E4B" }}>
+                <div className="w3-xxlarge" style={{ width: "70%" }}>
+                    Build discoverable and fast web application optimized for User Experience.
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <button className="w3-button w3-round-large w3-xxlarge w3-primary-button ">Get Request</button>
+                    <JamStack style={{ width: "44%" }} />
+                </div>
+            </div>
+        </main>
+        <section>
+            <div className="w3-display-container w3-content w3-hide-small">
+                <div className="w3-cell-row">
+                    <div className="w3-container w3-secondary w3-cell" style={{ height: 320 }}>
+                    </div>
+                    <div className="w3-container w3-tertiary w3-cell" style={{ height: 320 }}>
+                    </div>
+                </div>
+                <div style={{
+                    position: "absolute", display: "flex",
+                    flexDirection: "column", justifyContent: "space-between", padding: 48, left: 0, top: 0, bottom: 0, color: "#4A4E4B"
+                }}>
+                    <div className="w3-xlarge" style={{ width: "80%" }}>
+                        Mobile First Responsive Screen Size
+                    </div>
+                    <div>
+                        <Responsive style={{ width: "80%" }} />
+                    </div>
+                </div>
+                <div style={{
+                    position: "absolute", display: "flex",
+                    flexDirection: "column", justifyContent: "space-between", padding: 48, left: "50%", top: 0, bottom: 0, color: "#4A4E4B"
+                }}>
+                    <div className="w3-xlarge" style={{ width: "80%" }}>
+                        Search Engine Optimization
+                    </div>
+                    <div className="w3-xlarge" style={{ width: "80%" }}>
+                        High Compute Performance
+                    </div>
+                </div>
+                <div style={{
+                    position: "absolute", display: "flex",
+                    flexDirection: "column", justifyContent: "space-between", padding: 48, left: "75%", top: 0, bottom: 0, color: "#4A4E4B"
+                }}>
+                    <SearchEngine style={{ width: "70%" }} />
+                    <Gears style={{ width: "70%" }} />
+                </div>
+            </div>
+        </section>
+        <section>
+            <div className="w3-content">
+                {appText.en.tiers.map((tier, id) => (
+                    <div className="w3-col s12 m6 l4 w3-margin-bottom w3-margin-top">
+                        <div key={id} style={{ margin: 4 }}>
+                            <ul className="w3-ul w3-border w3-center w3-hover-shadow w3-round-large">
+                                <li className="w3-tertiary w3-xlarge w3-padding-16 border-radius-top">{tier.title}</li>
+                                <div className="w3-container">
+                                    <span className="w3-xlarge">${tier.price}</span>
+                                    <span className=" w3-opacity" style={{marginLeft:2}}>per month</span>
+                                </div>
+                                {tier.description.map((tier,id) => (
+                                    <p key={id} className="w3-container"><b>
+                                        &#xb7;{tier}</b> Storage</p>
+                                ))}
+                                <li className="w3-padding-16 border-radius-bottom">
+                                    <button className="w3-button w3-secondary w3-padding-medium w3-block w3-round-large">Sign Up</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
-            
-              <TextField name="subject" type="text" label="Subject" fullWidth variant="outlined" />
-            
-              <TextField name="message" type="text" label="Message" fullWidth variant="outlined" multiline rows={4} />
-            
-            
-              <Button type="submit" fullWidth variant="outlined" style={{ backgroundColor: "#d9e4dd", color: "#575757" }}>Send</Button>
+                ))}
+            </div>
+            <div className="w3-container w3-content w3-xlarge">
+                Contact
+            </div>
+            <form className="w3-container w3-content w3-margin-top">
 
-            
-              <Button type="reset" fullWidth variant="outlined" style={{ backgroundColor: "#f7f2e7", color: "#575757" }}>Clear</Button>
+                <label className=""><b>First Name</b></label>
+                <input className="w3-input w3-border w3-round-large" type="text" />
 
-           
-              <h6>{appText.en.contact.place}</h6>
-              <h6>{appText.en.contact.phone}</h6>
-              <h6>{appText.en.contact.email}</h6>
-    
-        <Box mt={5}>
-          <Copyright />
-        </Box>
-      </div>
-    </ThemeProvider>
-  )
-}
+                <label className=""><b>Last Name</b></label>
+                <input className="w3-input w3-border w3-round-large" type="text" />
+                <label className=""><b>Subject</b></label>
+                <input className="w3-input w3-border w3-round-large" type="text" />
+                <label className=""><b>Message</b></label>
+                <textarea className="w3-input w3-border w3-round-large" type="text" />
+                <button className="w3-button w3-tertiary w3-padding-medium w3-block w3-round-large w3-margin-top">Clear</button>
+                <button className="w3-button w3-secondary w3-padding-medium w3-block w3-round-large w3-margin-top">Register</button>
+
+            </form>
+        </section>
+        <footer className="w3-content">
+            <Copyright />
+        </footer>
+    </>
+)
+
+export default Index
