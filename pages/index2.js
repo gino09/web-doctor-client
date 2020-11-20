@@ -134,19 +134,19 @@ const Index = () => (
             <div className="w3-container w3-content w3-xlarge">
                 Contact
             </div>
-            <form class="w3-content w3-margin-top">
+            <form className="w3-content w3-margin-top">
 
-                <label class=""><b>First Name</b></label>
-                <input class="w3-input w3-border w3-round-large" type="text" />
+                <label className=""><b>First Name</b></label>
+                <input className="w3-input w3-border w3-round-large" type="text" />
 
-                <label class=""><b>Last Name</b></label>
-                <input class="w3-input w3-border w3-round-large" type="text" />
-                <label class=""><b>Subject</b></label>
-                <input class="w3-input w3-border w3-round-large" type="text" />
-                <label class=""><b>Message</b></label>
-                <textarea class="w3-input w3-border w3-round-large" type="text" />
-                <button class="w3-tertiary w3-block w3-xlarge w3-margin-top">Clear</button>
-                <button class="w3-secondary w3-block w3-xlarge w3-margin-top">Register</button>
+                <label className=""><b>Last Name</b></label>
+                <input className="w3-input w3-border w3-round-large" type="text" />
+                <label className=""><b>Subject</b></label>
+                <input className="w3-input w3-border w3-round-large" type="text" />
+                <label className=""><b>Message</b></label>
+                <textarea className="w3-input w3-border w3-round-large" type="text" />
+                <button className="w3-tertiary w3-block w3-xlarge w3-margin-top">Clear</button>
+                <button className="w3-secondary w3-block w3-xlarge w3-margin-top">Register</button>
 
             </form>
         </section>
