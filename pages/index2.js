@@ -111,16 +111,16 @@ const Index = () => (
             <div className="w3-content">
                 {appText.en.tiers.map((tier, id) => (
                     <div className="w3-col s12 m6 l4 w3-margin-bottom w3-margin-top">
-                        <div style={{ margin: 4 }}>
+                        <div key={id} style={{ margin: 4 }}>
                             <ul className="w3-ul w3-border w3-center w3-hover-shadow w3-round-large">
                                 <li className="w3-tertiary w3-xlarge w3-padding-16 border-radius-top">{tier.title}</li>
                                 <div className="w3-container">
                                     <span className="w3-xlarge">${tier.price}</span>
                                     <span className=" w3-opacity" style={{marginLeft:2}}>per month</span>
                                 </div>
-                                {tier.description.map((tier) => (
-                                    <p className="w3-container"><b>
-                                        &#8226{tier}</b> Storage</p>
+                                {tier.description.map((tier,id) => (
+                                    <p key={id} className="w3-container"><b>
+                                        &#xb7;{tier}</b> Storage</p>
                                 ))}
                                 <li className="w3-padding-16 border-radius-bottom">
                                     <button className="w3-button w3-secondary w3-padding-medium w3-block w3-round-large">Sign Up</button>
