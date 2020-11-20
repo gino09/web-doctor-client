@@ -11,7 +11,7 @@ class MyDocument extends Document {
             <Html>
                 <Head>
                     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap" rel="stylesheet"/>
-                    
+                    <meta charSet="utf-8"></meta>
                 </Head>
                 <body style={{overflowY:"scroll"}}>
                     

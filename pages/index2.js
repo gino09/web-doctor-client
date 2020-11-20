@@ -6,6 +6,24 @@ import JamStack from '../public/svg/jamstack.svg'
 import Responsive from '../public/svg/responsive.svg'
 import SearchEngine from '../public/svg/searchengine.svg'
 import Gears from '../public/svg/gears.svg'
+import Link from 'next/link'
+import appText from '../components/appText'
+
+function Copyright() {
+    return (
+        <p style={{display:"flex",justifyContent:"center"}}>
+            {'Copyright © '}
+            <Link href="https://ginogarcia.dev">
+                
+                    WebDoctor
+       
+            </Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+        </p>
+    );
+}
+
 const Index = () => (
     <>
         <div className="w3-top">
@@ -66,7 +84,7 @@ const Index = () => (
                         Mobile First Responsive Screen Size
                     </div>
                     <div>
-                        <Responsive style={{width:"80%"}}/>
+                        <Responsive style={{ width: "80%" }} />
                     </div>
                 </div>
                 <div style={{
@@ -85,11 +103,56 @@ const Index = () => (
                     flexDirection: "column", justifyContent: "space-between", padding: 48, left: "75%", top: 0, bottom: 0, color: "#4A4E4B"
                 }}>
                     <SearchEngine style={{ width: "70%" }} />
-                    <Gears style={{ width: "70%" }}/>
+                    <Gears style={{ width: "70%" }} />
                 </div>
             </div>
-
         </section>
+        <section>
+            <div className="w3-content">
+                {appText.en.tiers.map((tier, id) => (
+                    <div className="w3-col s12 m6 l4 w3-margin-bottom w3-margin-top">
+                        <div style={{ margin: 4 }}>
+                            <ul className="w3-ul w3-border w3-center w3-hover-shadow w3-round-large">
+                                <li className="w3-tertiary w3-xlarge w3-padding-16 border-radius-top">{tier.title}</li>
+                                <div className="w3-container">
+                                    <span className="w3-xlarge">${tier.price}</span>
+                                    <span className=" w3-opacity" style={{marginLeft:2}}>per month</span>
+                                </div>
+                                {tier.description.map((tier) => (
+                                    <p className="w3-container"><b>
+                                        &#8226{tier}</b> Storage</p>
+                                ))}
+                                <li className="w3-padding-16 border-radius-bottom">
+                                    <button className="w3-button w3-secondary w3-padding-medium w3-block w3-round-large">Sign Up</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                ))}
+            </div>
+            <div className="w3-container w3-content w3-xlarge">
+                Contact
+            </div>
+            <form class="w3-content w3-margin-top">
+
+                <label class=""><b>First Name</b></label>
+                <input class="w3-input w3-border w3-round-large" type="text" />
+
+                <label class=""><b>Last Name</b></label>
+                <input class="w3-input w3-border w3-round-large" type="text" />
+                <label class=""><b>Subject</b></label>
+                <input class="w3-input w3-border w3-round-large" type="text" />
+                <label class=""><b>Message</b></label>
+                <textarea class="w3-input w3-border w3-round-large" type="text" />
+                <button class="w3-tertiary w3-block w3-xlarge w3-margin-top">Clear</button>
+                <button class="w3-secondary w3-block w3-xlarge w3-margin-top">Register</button>
+
+            </form>
+        </section>
+        <footer className="w3-content">
+            <Copyright />
+        </footer>
     </>
 )
 

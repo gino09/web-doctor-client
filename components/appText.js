@@ -14,9 +14,18 @@ const AppText = {
                     'Contact Form - Email Integration',
                     'Cloud CDN Deployment',
                     'Optional:Domain name setup or migration',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    ''
                 ],
                 buttonText: 'Get started',
-                buttonVariant: 'contained',
             },
             {
                 title: 'Dynamic Media App',
@@ -28,11 +37,15 @@ const AppText = {
                     'Contact Form - Email Integration',
                     'Cloud CDN Deployment',
                     'Optional: Basic User Schema, User Authentication & Authorization',
-                    'Optional: Product Cart design & Stripe Payment itegration'
-
+                    'Optional: Product Cart design & Stripe Payment itegration',
+                    '1',
+                    '1',
+                    '1',
+                    '1',
+                    '1',
+                    '1'
                 ],
                 buttonText: 'Get started',
-                buttonVariant: 'contained',
             },
             {
                 title: 'Full Stack App',
@@ -52,7 +65,6 @@ const AppText = {
                     
                 ],
                 buttonText: 'Get started',
-                buttonVariant: 'contained',
             }
         ],
         contact:{

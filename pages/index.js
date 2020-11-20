@@ -35,6 +35,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Link from 'next/link'
 import appText from '../components/appText'
 
 function Copyright() {
