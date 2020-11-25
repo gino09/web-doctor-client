@@ -1,117 +1,79 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import Lock from '../public/svg/padlock.svg'
+import Link from 'next/link'
+import React from 'react'
+import {postLogin} from '../services/rest-service.ts'
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-      </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+const SignIn = () => {
 
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    },
-}));
+    const [inputs, setInputs] = React.useState({
+        identifier: "",
+        password: "",
+    });
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        postLogin(inputs)
+    };
+    const handleInputChange = (e) => {
+        e.persist();
+        setInputs({
+            ...inputs,
+            [e.target.name]: e.target.value,
+        });
+    };
 
-export default function SignIn() {
-    const classes = useStyles();
 
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Sign in
-        </Typography>
-                <form className={classes.form} noValidate>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
+        <div style={{ maxWidth: 600, height: "100vh", margin: "auto", display: "flex", flexDirection: "column", justifyContent: "center" }} className="w3-padding">
+            <div className="w3-center">
+                <Lock style={{ width: "10%" }} />
+                <div>
+                    Sign In
+            </div>
+            </div>
+            <form className="w3-container w3-border w3-padding" onSubmit={handleSubmit}>
+                <div className="w3-section">
+                    <label><b>Email Address</b></label>
+                    <input
+                        className="w3-input w3-border w3-margin-bottom" type="email"
+                        placeholder="Enter Email Address *"
+                        name="identifier"
                         id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
+                        onChange={handleInputChange}
+                        value={inputs.identifier}
+                        required />
+                    <label><b>Password</b></label>
+                    <input
+                        className="w3-input w3-border"
                         type="password"
                         id="password"
-                        autoComplete="current-password"
-                    />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        Sign In
-          </Button>
-                    <Grid container>
-                        <Grid item xs>
-                            <Link href="#" variant="body2">
-                                Forgot password?
-              </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link href="#" variant="body2">
-                                {"Don't have an account? Sign Up"}
-                            </Link>
-                        </Grid>
-                    </Grid>
-                </form>
-            </div>
-            <Box mt={8}>
-                <Copyright />
-            </Box>
-        </Container>
-    );
+                        placeholder="Enter Password *"
+                        name="password"
+                        onChange={handleInputChange}
+                        value={inputs.password}
+                        required />
+                    <button className="w3-button w3-block w3-secondary w3-section w3-padding w3-round" type="submit">Sign In</button>
+                    <input className="w3-button w3-block w3-tertiary w3-section w3-padding w3-round" type="reset" value="Clear"/>
+                    <div>
+                        <input
+                            className="w3-check w3-margin-top"
+                            type="checkbox"
+                        />
+            Remember me
+          <span className="w3-right w3-margin-top w3-padding">Not registered? <Link href="/signup"><span className="w3-button w3-secondary ">Sign Up</span></Link></span>
+
+                    </div>
+
+                </div>
+                <div className="w3-padding-bottom">
+                    <Link href="/"><div className="w3-button w3-red">Cancel</div></Link>
+                    <span className="w3-right w3-padding w3-hide-small">Forgot <a href="#">password?</a></span>
+                </div>
+
+            </form>
+        </div>
+    )
 }
+
+
+
+export default SignIn

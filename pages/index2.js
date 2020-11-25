@@ -15,7 +15,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import FormControl from '@material-ui/core/FormControl';
 
 import theme from '../styles/theme'
-import NavBar from '../components/Navbar'
 import BigNavbar from '../components/BigNavbar'
 import Button from '@material-ui/core/Button';
 
@@ -172,7 +171,7 @@ export default function Home() {
       <CssBaseline />
       <div className={classes.index}>
         <div className={classes.root}>
-          {matches ? <BigNavbar classes={classes} /> : <NavBar classes={classes} setTop={setTop} />}
+          {matches ? <BigNavbar classes={classes} /> : ''}
         </div>
         <Drawer anchor="top" open={top} onClose={toggleDrawer}>
           {list()}
