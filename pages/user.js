@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUserCircle, faTrashAlt, faEdit, faFileUpload } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from 'next/router'
-import Link from 'next/link'
+import React from 'react'
+import AppContext from "../context/AppContext";
 
 const User = () => {
-    const router = useRouter()
-
+    const { user, setUser } = React.useContext(AppContext);
     return (
         <div className="w3-content w3-padding" style={{ marginTop: 80, height:"100vh"}}>
             <div className="w3-container w3-card w3-padding w3-margin-bottom">
@@ -17,10 +17,10 @@ const User = () => {
                         <FontAwesomeIcon size="2x" icon={faUserCircle} ></FontAwesomeIcon>
                         <div className="w3-margin-left">
                             <div>
-                                gino
+                                {user && user.username}
                         </div>
                             <div>
-                                gino_garcia@hotmail.com
+                                {user && user.email}
                         </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@ const User = () => {
                 </div>
                 <hr />
                 <div className="">
-                    Joined: {new Date('2020-11-11').toLocaleDateString('en', { weekday: "long", month: "long", day: "numeric", year: "numeric" })}
+                    Joined: {new Date(user && user.created_at).toLocaleDateString('en', { weekday: "long", month: "long", day: "numeric", year: "numeric" })}
                 </div>
             </div>
         </div>

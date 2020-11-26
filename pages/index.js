@@ -1,18 +1,12 @@
-import Logo from '../public/svg/logo.svg'
-import Flag from '../public/svg/flag.svg'
-import Contact from '../public/svg/contact.svg'
-import Person from '../public/svg/person.svg'
 import JamStack from '../public/svg/jamstack.svg'
 import Responsive from '../public/svg/responsive.svg'
 import SearchEngine from '../public/svg/searchengine.svg'
 import Gears from '../public/svg/gears.svg'
 import Link from 'next/link'
 import appText from '../components/appText'
-import { useState } from 'react'
 import Image from 'next/image'
 
 const Index = () => {
-    const [user,setUser] = useState(false)
     return(
     <>
         <main className="w3-display-container w3-content w3-content w3-hide-medium w3-hide-large" style={{ marginTop: 80 }}>
