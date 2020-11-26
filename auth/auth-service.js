@@ -6,7 +6,7 @@ import AppContext from '../context/AppContext'
 
 /* const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337"; */
 
-const API_URL = "https://stormy-savannah-41735.herokuapp.com"
+const API_URL = process.env.NEXT_PUBLIC_API_URL 
 //register a new user
 export const registerUser = (username, email, password) => {
     //prevent function from being ran on the server
