@@ -36,7 +36,6 @@ const SignUp = () => {
             w3-container w3-border w3-padding"
                 onSubmit={(e) => {
                     e.preventDefault()
-                    console.log(`${data.username},${data.email},${data.password},`)
                     setLoading(true);
                     registerUser(data.username, data.email, data.password)
                         .then((res) => {

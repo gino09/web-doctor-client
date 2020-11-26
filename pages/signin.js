@@ -85,10 +85,10 @@ return (
                     }}
                 />
                 <button className="w3-button w3-block w3-secondary w3-section w3-padding w3-round" type="submit">Sign In</button>
-                <input
+                <button
                     className="w3-button w3-block w3-tertiary w3-section w3-padding w3-round"
                     onClick={() => console.log('cleared')}
-                    value="Clear" />
+                     >Clear</button>
                 <div>
                     <input
                         className="w3-check w3-margin-top"
