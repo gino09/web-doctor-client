@@ -84,7 +84,12 @@ return (
                         setData({ ...data, password: e.target.value })
                     }}
                 />
-                <button className="w3-button w3-block w3-secondary w3-section w3-padding w3-round" type="submit">Sign In</button>
+                <button
+                    className="w3-button w3-block w3-secondary w3-section w3-padding w3-round"
+                    type="submit"
+                >
+                    {loading ? "Loading.." : "Sign In"}
+                </button>
                 <button
                     className="w3-button w3-block w3-tertiary w3-section w3-padding w3-round"
                     onClick={() => console.log('cleared')}
